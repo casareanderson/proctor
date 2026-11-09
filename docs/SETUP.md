@@ -11,7 +11,7 @@ export OPENROUTER_API_KEY=sk-or-...
 To use a local Ollama instead:
 
 ```bash
-export MENTOR_URL=http://192.168.1.50:11434/v1
+export MENTOR_URL=http://192.0.2.50:11434/v1
 export MENTOR_API_KEY=ollama
 export MENTOR_MODEL=qwen3:8b
 ```

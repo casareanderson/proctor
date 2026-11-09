@@ -39,7 +39,7 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           git diff origin/${{ github.base_ref }}...HEAD > /tmp/diff.patch
-          python review.py diff /tmp/diff.patch
+          python3.12 ./proctor diff /tmp/diff.patch
 ```
 
 `proctor` exits non-zero only when the model is unreachable or the diff can't be read — not on a `changes` verdict —
