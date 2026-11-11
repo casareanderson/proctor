@@ -21,7 +21,7 @@ index 1111111..2222222 100644
      if not filename:
          return
 +    path = "/tmp/" + filename
-+    subprocess.run("mv " + filename + " " + path, shell=True)
++    subprocess.run(["mv", filename, path])
      print("done")
 """
 
@@ -32,8 +32,8 @@ FINDINGS = [
         "severity": "high",
         "file": "app/upload.py",
         "line": 12,
-        "title": "shell injection",
-        "why": "filename from the caller is built straight into a shell command",
+        "title": "path traversal",
+        "why": "filename from the caller is concatenated into the destination path, so a name like ../.. escapes /tmp",
     },
     {
         "severity": "med",
@@ -56,7 +56,7 @@ def main():
     print("proctor - fact-check demo (review.check, the real code path; the")
     print("model reply below is canned)")
     print()
-    print("Diff under review (adds a shell call built from an untrusted filename):")
+    print("Diff under review (builds a move destination from an untrusted filename):")
     for line in DIFF.splitlines():
         if line.startswith("+") and not line.startswith("+++"):
             print("  " + line)
